@@ -1,5 +1,7 @@
+import { AuthGuard } from './../../providers/guards/auth.guard';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App,IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the HomePage page.
@@ -15,11 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public appCtrl: App,
+    public navParams: NavParams,
+    public authGuard: AuthGuard) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+  }
+
+  ionViewCanEnter() {
+    return this.authGuard.authGuard();
+  }
+
+  logoutUser() {
+    //this.navCtrl.setRoot("LoginPage");
+    //this.appCtrl.getRootNav().push(LoginPage);
+    this.navCtrl.push(LoginPage);
+    this.authGuard.logout();
   }
 
 }

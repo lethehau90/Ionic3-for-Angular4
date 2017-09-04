@@ -5,7 +5,7 @@ import { NavController } from 'ionic-angular';
 @Injectable()
 export class UtilityService {
 
-  constructor(private nav: NavController) {
+  constructor() {
   }
 
   convertDateTime(date: Date) {
@@ -14,11 +14,11 @@ export class UtilityService {
   }
 
   navigate(path: string) {
-    this.nav.push(path);
+    //this.nav.push(path);
   }
 
   navigateToLogin() {
-    this.nav.push(UrlConstants.LOGIN);
+    //this.nav.push(UrlConstants.LOGIN);
   }
 
   Unflatten = (arr: any[]): any[] => {

@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../providers/guards/auth.guard';
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthenService } from '../../providers/services/authen.service';
@@ -15,30 +16,17 @@ export class LoginPage {
   constructor(private nav: NavController,
     private auth: AuthenService,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController
-    ) { }
+    private loadingCtrl: LoadingController,
+    private authGuard : AuthGuard) { }
 
   public createAccount() {
-    this.nav.push('RegisterPage');
+    this.nav.setRoot('RegisterPage');
   }
-
-  // public login() {
-  //   this.showLoading()
-  //   this.auth.login(this.registerCredentials).subscribe(allowed => {
-  //     if (allowed) {        
-  //       this.nav.setRoot('HomePage');
-  //     } else {
-  //       this.showError("Access Denied");
-  //     }
-  //   },
-  //     error => {
-  //       this.showError(error);
-  //     });
-  // }
 
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials.email, this.registerCredentials.password).subscribe(data => {
+      this.authGuard.login();
       this.nav.setRoot('HomePage');
     }, error => {
       this.showError(MessageContstants.SYSTEM_ERROR_MSG)

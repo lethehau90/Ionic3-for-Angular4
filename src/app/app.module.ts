@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { LoginPage } from '../pages/login/login';
 
 import { HttpModule } from '@angular/http';
 
@@ -17,11 +16,12 @@ import { UtilityService } from "../providers/services/utility.service";
 import { CachingService } from '../providers/services/caching.service';
 import { SignalrService } from '../providers/services/signalr.service';
 import { DataService } from '../providers/services/data.service';
+import { AuthGuard } from '../providers/guards/auth.guard';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
-    MyApp,
-    LoginPage
+    MyApp,LoginPage
   ],
   imports: [
     BrowserModule,
@@ -30,8 +30,7 @@ import { DataService } from '../providers/services/data.service';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    LoginPage
+    MyApp,LoginPage
   ],
   providers: [
     StatusBar,
@@ -43,7 +42,8 @@ import { DataService } from '../providers/services/data.service';
     UtilityService,
     UploadService,
     CachingService,
-    SignalrService
+    SignalrService,
+    AuthGuard
   ]
 })
 export class AppModule { 

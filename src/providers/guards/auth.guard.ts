@@ -1,25 +1,35 @@
-// import { Injectable } from '@angular/core';
-// import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
-// import { SystemConstants } from '../common/system.constants';
-// import { UrlConstants } from '../common/url.constants';
+import { Injectable } from '@angular/core';
+import { SystemConstants } from '../common/system.constants';
+import { UrlConstants } from '../common/url.constants';
 
+@Injectable()
+export class AuthGuard  {
+    private isLoggedIn = false;
+    constructor() {
 
-// @Injectable()
-// export class AuthGuard implements CanActivate {
-//     constructor(private router: Router) {
+    }
+    login(){
+        if (localStorage.getItem(SystemConstants.CURRENT_USER)) {
+             this.isLoggedIn = true;
+        }
+        else {
+             this.isLoggedIn = false;
+        }
+       
+    }
 
-//     }
-//     canActivate(activateRoute: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-//         if (localStorage.getItem(SystemConstants.CURRENT_USER)) {
-//             return true;
-//         }
-//         else {
-//             this.router.navigate([UrlConstants.LOGIN], {
-//                 queryParams: {
-//                     returnUrl: routerState.url
-//                 }
-//             });
-//             return false;
-//         }
-//     }
-// }
+    logout(){
+        localStorage.removeItem(SystemConstants.CURRENT_USER)
+        this.isLoggedIn = false;
+    } 
+
+    authGuard() : boolean{
+        if (localStorage.getItem(SystemConstants.CURRENT_USER)) {
+            return this.isLoggedIn = true;
+        }
+        else {
+           return  this.isLoggedIn = false;
+        }
+    }
+   
+}
