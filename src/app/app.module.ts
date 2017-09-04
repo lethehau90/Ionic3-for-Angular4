@@ -1,30 +1,53 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Injector } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+
+import { HttpModule } from '@angular/http';
+
+import { InjectableObject } from "../providers/base/injectableobject.base";
+import { AuthenService } from './../providers/services/authen.service';
+import { NotificationService } from "../providers/services/notification.service";
+import { UploadService } from "../providers/services/upload.service";
+import { UtilityService } from "../providers/services/utility.service";
+import { CachingService } from '../providers/services/caching.service';
+import { SignalrService } from '../providers/services/signalr.service';
+import { DataService } from '../providers/services/data.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    DataService,
+    AuthenService,
+    NotificationService,
+    UtilityService,
+    UploadService,
+    CachingService,
+    SignalrService
   ]
 })
-export class AppModule {}
+export class AppModule { 
+  constructor(private _injecttor: Injector) {
+        InjectableObject(this._injecttor)
+    }
+}
