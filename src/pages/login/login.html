@@ -1,36 +1,43 @@
-<ion-content class="login-content" padding>
+<ion-content class="login-content" padding full-height>
   <ion-row class="logo-row">
     <ion-col></ion-col>
     <ion-col width-67>
-      <img src="http://placehold.it/300x200"/>
+      <img src="http://placehold.it/300x200" />
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
+  <h4 class="title">ĐĂNG NHẬP</h4>
+  <h6 class="subtitle">HAULE-CRM</h6>
   <div class="login-box">
     <form (ngSubmit)="login()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
-            
+
             <ion-item>
               <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
             </ion-item>
-            
+
           </ion-list>
         </ion-col>
       </ion-row>
-      
+
       <ion-row>
         <ion-col class="signup-col">
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
-          <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
         </ion-col>
       </ion-row>
-      
+
     </form>
   </div>
+  <ion-footer >
+    <ion-toolbar class="login-footer">
+      <h6>Bạn <a>không có tài khoản</a> đăng nhập hoặc <a>quên mật khẩu</a>?</h6>
+      <h6>Vui lòng liên hệ bộ phận kỹ thuật của công ty để được hỗ trợ.</h6>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
