@@ -1,6 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-import { UrlConstants } from '../common/url.constants';
-import { NavController } from 'ionic-angular';
 
 @Injectable()
 export class UtilityService {
