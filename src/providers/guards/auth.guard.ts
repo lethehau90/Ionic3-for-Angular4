@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SystemConstants } from '../common/system.constants';
-import { UrlConstants } from '../common/url.constants';
+//import { UrlConstants } from '../common/url.constants';
 
 @Injectable()
 export class AuthGuard  {
