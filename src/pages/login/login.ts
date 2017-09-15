@@ -27,7 +27,7 @@ export class LoginPage {
     this.showLoading()
     this.auth.login(this.registerCredentials.email, this.registerCredentials.password).subscribe(data => {
       this.authGuard.login();
-      this.nav.setRoot('HomePage');
+      this.nav.setRoot('MainPage');
     }, error => {
       this.showError(MessageContstants.SYSTEM_ERROR_MSG)
     })

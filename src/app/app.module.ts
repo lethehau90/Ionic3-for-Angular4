@@ -36,14 +36,14 @@ import { LoginPage } from '../pages/login/login';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    DataService,
-    AuthenService,
-    NotificationService,
-    UtilityService,
-    UploadService,
-    CachingService,
-    SignalrService,
-    AuthGuard
+      DataService,
+      AuthenService,
+      NotificationService,
+      UtilityService,
+      UploadService,
+      CachingService,
+      SignalrService,
+      AuthGuard
   ]
 })
 export class AppModule { 
