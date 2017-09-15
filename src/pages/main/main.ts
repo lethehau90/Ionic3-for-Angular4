@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { HomePage } from '../home/home';
 import { CatsPage } from '../cats/cats';
 import { DogsPage } from '../dogs/dogs';
@@ -24,12 +28,15 @@ export class MainPage {
   private dogsPage;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.rootPage = HomePage;
-
-    this.homePage = HomePage;
-    this.catsPage = CatsPage;
-    this.dogsPage = DogsPage;
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashscreen: SplashScreen, 
+    public navCtrl: NavController,
+     public navParams: NavParams) 
+     {
+        this.rootPage = HomePage;
+        this.initializeApp();
+        this.homePage = HomePage;
+        this.catsPage = CatsPage;
+        this.dogsPage = DogsPage;
   }
 
   ionViewDidLoad() {
@@ -38,6 +45,15 @@ export class MainPage {
 
   openPage(p) {
     this.rootPage = p;
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashscreen.hide();
+    });
   }
 
 }
