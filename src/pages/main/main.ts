@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MenuController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { CatsPage } from '../cats/cats';
@@ -30,10 +31,11 @@ export class MainPage {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashscreen: SplashScreen, 
     public navCtrl: NavController,
+    public menuCtrl: MenuController,
      public navParams: NavParams) 
      {
+        //this.initializeApp();
         this.rootPage = HomePage;
-        this.initializeApp();
         this.homePage = HomePage;
         this.catsPage = CatsPage;
         this.dogsPage = DogsPage;
