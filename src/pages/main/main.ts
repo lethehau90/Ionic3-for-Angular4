@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,6 +8,9 @@ import { MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CatsPage } from '../cats/cats';
 import { DogsPage } from '../dogs/dogs';
+import { AuthGuard } from '../../providers/guards/auth.guard';
+import { LoginPage } from '../login/login';
+import { ListPage } from '../list/list';
 
 /**
  * Generated class for the MainPage page.
@@ -27,18 +30,20 @@ export class MainPage {
   private homePage;
   private catsPage;
   private dogsPage;
+  private listsPage
 
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashscreen: SplashScreen, 
     public navCtrl: NavController,
     public menuCtrl: MenuController,
+    public _auth : AuthGuard,
      public navParams: NavParams) 
      {
-        //this.initializeApp();
         this.rootPage = HomePage;
         this.homePage = HomePage;
         this.catsPage = CatsPage;
         this.dogsPage = DogsPage;
+        this.listsPage = ListPage;
   }
 
   ionViewDidLoad() {
@@ -49,13 +54,9 @@ export class MainPage {
     this.rootPage = p;
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashscreen.hide();
-    });
+  ionViewCanEnter() {
+    if(!this._auth._isLoggedIn) this.navCtrl.push(LoginPage); 
   }
+
 
 }

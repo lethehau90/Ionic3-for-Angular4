@@ -4,6 +4,8 @@ import { MainPage } from './main';
 import { HomePageModule } from '../home/home.module';
 import { CatsPageModule } from '../cats/cats.module';
 import { DogsPageModule } from '../dogs/dogs.module';
+import { ListPageModule } from '../list/list.module';
+
 
 @NgModule({
   declarations: [
@@ -13,6 +15,7 @@ import { DogsPageModule } from '../dogs/dogs.module';
     HomePageModule,
     CatsPageModule,
     DogsPageModule,
+    ListPageModule,
     IonicPageModule.forChild(MainPage),
   ],
 })

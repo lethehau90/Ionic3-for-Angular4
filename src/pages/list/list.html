@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons start>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+    <ion-buttons left>
+      <button ion-button (click)="goBack()">
+          <ion-icon class="backIcon" name="arrow-back"></ion-icon>
       </button>
-    </ion-buttons>
+  </ion-buttons>
 
-    <ion-title>Carts</ion-title>
+    <ion-title>Danh sách products</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only>

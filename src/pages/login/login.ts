@@ -1,8 +1,8 @@
-import { AuthGuard } from './../../providers/guards/auth.guard';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { App, NavController, AlertController, LoadingController, Loading, IonicPage, ViewController } from 'ionic-angular';
 import { AuthenService } from '../../providers/services/authen.service';
 import { MessageContstants } from '../../providers/common/message.constants';
+import { MainPage } from '../main/main';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,8 @@ export class LoginPage {
     private auth: AuthenService,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private authGuard : AuthGuard) { }
+    public appCtrl: App,
+    public viewCtrl: ViewController) { }
 
   public createAccount() {
     this.nav.setRoot('RegisterPage');
@@ -26,7 +27,6 @@ export class LoginPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials.email, this.registerCredentials.password).subscribe(data => {
-      this.authGuard.login();
       this.nav.setRoot('MainPage');
     }, error => {
       this.showError(MessageContstants.SYSTEM_ERROR_MSG)
